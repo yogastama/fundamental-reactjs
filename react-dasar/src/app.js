@@ -1,18 +1,11 @@
-function SayHelloComponent(props){
-    return <div style={
-        {
-            width: '200px',
-            height: '200px',
-            backgroundColor : 'blue',
-            marginBottom:'10px'
-        }
-    }>Halo {props.name}</div>;
+function alertKlik(msg){
+    alert(msg)
 }
 const element = (
     <>
-        <SayHelloComponent name="Yoga" />
-        <SayHelloComponent name="Frankl" />
-        <SayHelloComponent name="Nice" />
+        <button onClick={alertKlik.bind(this, 'Halo semuanya')}>
+            Click Me
+        </button>
     </>
 );
 

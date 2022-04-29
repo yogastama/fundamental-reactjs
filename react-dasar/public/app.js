@@ -1,19 +1,8 @@
-function SayHelloComponent(props) {
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      width: '200px',
-      height: '200px',
-      backgroundColor: 'blue',
-      marginBottom: '10px'
-    }
-  }, "Halo ", props.name);
+function alertKlik(msg) {
+  alert(msg);
 }
 
-const element = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(SayHelloComponent, {
-  name: "Yoga"
-}), /*#__PURE__*/React.createElement(SayHelloComponent, {
-  name: "Frankl"
-}), /*#__PURE__*/React.createElement(SayHelloComponent, {
-  name: "Nice"
-}));
+const element = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+  onClick: alertKlik.bind(this, 'Halo semuanya')
+}, "Click Me"));
 ReactDOM.render(element, document.querySelector('#root'));
