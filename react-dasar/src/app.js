@@ -1,17 +1,27 @@
 function App(){
-    function formSubmit(e){
-        e.preventDefault();
-        console.log('submitted')
-    }
+    const [news, setNews] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
+    React.useEffect(function(){
+        async function getData(){
+            const request = await fetch('https://api.spaceflightnewsapi.net/v3/blogs');
+            const response = await request.json();
+            setNews(response);
+            setLoading(false);
+        }
+        getData();
+    }, []);
     return (
         <>
-            <form onSubmit={formSubmit}>
-                <div>
-                    <label>Nama :</label>
-                    <input type="text" name="nama" />
-                </div>
-                <button type="submit">Kirim</button>
-            </form>
+            <h1>Data Fetch</h1>
+            <ul>
+                {
+                    loading ?
+                    <li>Loading...</li> :
+                    news.map(function(item){
+                        return <li key={item.id}>{item.title}</li>
+                    })
+                }
+            </ul>
         </>
     )
 }

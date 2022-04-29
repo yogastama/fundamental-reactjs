@@ -1,17 +1,21 @@
 function App() {
-  function formSubmit(e) {
-    e.preventDefault();
-    console.log('submitted');
-  }
+  const [news, setNews] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  React.useEffect(function () {
+    async function getData() {
+      const request = await fetch('https://api.spaceflightnewsapi.net/v3/blogs');
+      const response = await request.json();
+      setNews(response);
+      setLoading(false);
+    }
 
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("form", {
-    onSubmit: formSubmit
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", null, "Nama :"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    name: "nama"
-  })), /*#__PURE__*/React.createElement("button", {
-    type: "submit"
-  }, "Kirim")));
+    getData();
+  }, []);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Data Fetch"), /*#__PURE__*/React.createElement("ul", null, loading ? /*#__PURE__*/React.createElement("li", null, "Loading...") : news.map(function (item) {
+    return /*#__PURE__*/React.createElement("li", {
+      key: item.id
+    }, item.title);
+  })));
 }
 
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.querySelector('#root'));
