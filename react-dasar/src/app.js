@@ -1,13 +1,22 @@
 function App(){
-    const [count, setCount] = React.useState(0);
-
+    const [login, setLogin] = React.useState(false);
+    const titleAppRef = React.useRef(null);
+    React.useEffect(function(){
+        console.log('Hello');
+        titleAppRef.current.textContent = 'Login App';
+    }, []);
     return (
         <>
-            <button onClick={() => setCount(count - 1) }>-</button>
-            <span>{count}</span>
-            <button onClick={() => setCount(count + 1) }>+</button>
+            <h1 ref={titleAppRef}>
+                Simple Login Application
+            </h1>
+            <p>
+                {login ? 'Udah login' : 'Belum login'}
+            </p>
+            <button onClick={() => login ? setLogin(false) : setLogin(true)}>
+                {login ? 'Logout' : 'Login'}
+            </button>
         </>
     )
 }
-
 ReactDOM.render(<App />, document.querySelector('#root'));
