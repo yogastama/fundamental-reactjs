@@ -1,12 +1,13 @@
-function alertKlik(msg){
-    alert(msg)
-}
-const element = (
-    <>
-        <button onClick={alertKlik.bind(this, 'Halo semuanya')}>
-            Click Me
-        </button>
-    </>
-);
+function App(){
+    const [count, setCount] = React.useState(0);
 
-ReactDOM.render(element, document.querySelector('#root'));
+    return (
+        <>
+            <button onClick={() => setCount(count - 1) }>-</button>
+            <span>{count}</span>
+            <button onClick={() => setCount(count + 1) }>+</button>
+        </>
+    )
+}
+
+ReactDOM.render(<App />, document.querySelector('#root'));
