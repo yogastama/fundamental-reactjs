@@ -1,18 +1,17 @@
 function App(){
-    const fruits = [
-        'Apple',
-        'Orange',
-        'Grape'
-    ];
+    function formSubmit(e){
+        e.preventDefault();
+        console.log('submitted')
+    }
     return (
         <>
-            <ul>
-                {
-                    fruits.map(function(fruit){
-                        return <li key={fruit}>{fruit}</li>
-                    })
-                }
-            </ul>
+            <form onSubmit={formSubmit}>
+                <div>
+                    <label>Nama :</label>
+                    <input type="text" name="nama" />
+                </div>
+                <button type="submit">Kirim</button>
+            </form>
         </>
     )
 }
